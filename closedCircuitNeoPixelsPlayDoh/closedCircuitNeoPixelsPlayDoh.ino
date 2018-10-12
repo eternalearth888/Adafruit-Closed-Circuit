@@ -35,7 +35,7 @@ void loop() {
   for (uint16_t i = 0; i < strip.numPixels(); i++) { //iterate through all the LEDs in the neopixel strip
     Serial.print("i: ");
     Serial.println(i);
-    if (a0_val > 50) {
+    if (a0_val > 100) {
       strip.setPixelColor(i,random(255), random(255), random(255));
     } else {
       // turn them off otherwise
