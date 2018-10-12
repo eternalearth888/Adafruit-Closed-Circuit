@@ -20,28 +20,25 @@ void setup() {
 
 void loop() {
   a0_val = (a0_val + analogRead(A0)) / 2; //we analog read a0, add it to itself, and average it to smooth the signal (slightly)
-  Serial.println(a0_val); //print a0_val to serial
+//  Serial.print("A0_VAL:");
+//  Serial.println(a0_val); //print a0_val to serial
   int led_count = map(a0_val, a0_min, a0_max, 0, pixel_length); //maps a0_val between min and max to the number of LEDs to light up
-  Serial.print("LEDCOUNT: ");
-  Serial.println(led_count);
+//  Serial.print("LEDCOUNT: ");
+//  Serial.println(led_count);
   int step_size = (a0_max - a0_min)/pixel_length; //find the a0 value interval between each LED to light
-
-  // pink color setting
-  int R = 237;
-  int G = 60;
-  int B = 176;
 
   //0 to 9, 0 being the first pixel in the list
   for (uint16_t i = 0; i < strip.numPixels(); i++) { //iterate through all the LEDs in the neopixel strip
-    Serial.print("i: ");
-    Serial.println(i);
+//    Serial.print("i: ");
+//    Serial.println(i);
     if (a0_val > 100) {
+      // when the circuit closes light up all the neopixels randomly
       strip.setPixelColor(i,random(255), random(255), random(255));
     } else {
-      // turn them off otherwise
+      // turn them all off otherwise
       strip.setPixelColor(i,0,0,0);
     }
   }
   strip.show(); //update the strip colors
-  delay(20); //20ms delay
+  delay(100); //100ms delay
 }
