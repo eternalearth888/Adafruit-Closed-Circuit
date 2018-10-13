@@ -42,13 +42,17 @@ void loop() {
 
   //0 to 9, 0 being the first pixel in the list
   for (uint16_t i = 0; i < strip.numPixels(); i++) { //iterate through all the LEDs in the neopixel strip
-    if (a0_val > 100) {
-      // when the circuit closes light up all the neopixels randomly
-      // when a0 val is active color all pixels yellow
-      strip.setPixelColor(i,255,255,0);
+    if (a0_val > 100 && a4_val > 100) {
+      // when both are connected to close the circuit turn the pixels a different color
+      // to indicate that all is working correctly
+      strip.setPixelColor(i,255,0,0);
     } else if (a4_val > 100) {
       // when a4 is active color all pixels blue
       strip.setPixelColor(i,0,0,255);
+    } else if (a0_val > 100) {
+       // when the circuit closes light up all the neopixels randomly
+      // when a0 val is active color all pixels yellow
+      strip.setPixelColor(i,255,255,0);
     } else {
       // turn them all off otherwise
       strip.setPixelColor(i,0,0,0);
