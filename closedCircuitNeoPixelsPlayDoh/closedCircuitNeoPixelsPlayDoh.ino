@@ -59,5 +59,5 @@ void loop() {
     }
   }
   strip.show(); //update the strip colors
-  delay(200); 
+  delay(500); 
 }

@@ -30,25 +30,21 @@ void draw() {
   switch(val) {
     case '0':
       drawBlankScreen();
-      println("Zero");
+      println("Zero: " + val);
       break;
     case '1':
-      println("One");
+      println("One: " + val);
       drawGreenCircle();
       break;
     case '2':
-      println("Two");
+      println("Two: " + val);
       drawBlueCircle();
       break;
     case '3':
-      println("Three");
+      println("Three: " + val);
       drawRedCircle();
       break;
-    default:  
-      println("Default");
-      break;
   }
-
 }
 
 void drawRedCircle() {
