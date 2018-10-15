@@ -28,11 +28,11 @@ void draw() {
   } 
  
   switch(val) {
-    case '0':
+    case '6':
       drawBlankScreen();
       println("Zero: " + val);
       break;
-    case '1':
+    case '0':
       println("One: " + val);
       drawGreenCircle();
       break;
@@ -43,6 +43,12 @@ void draw() {
     case '3':
       println("Three: " + val);
       drawRedCircle();
+      break;
+    case '4':
+      println("Four: " + val);
+      break;
+    case '5':
+      println("Five: " + val);
       break;
   }
 }
