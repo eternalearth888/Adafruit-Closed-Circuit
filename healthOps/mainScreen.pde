@@ -25,6 +25,7 @@ class mainScreen{
     kidney();
     skin();
     blood();
+    
   }
   
   void body(){

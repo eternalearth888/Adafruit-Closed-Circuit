@@ -44,7 +44,8 @@ class addName{
   
   
   
-  void openScreenClick2(){     update2(mouseX, mouseY);
+  void openScreenClick2(){     
+    update2(mouseX, mouseY);
       if(onSecondPage && mousePressed == true){
         mousePressed();
       }
@@ -62,10 +63,10 @@ class addName{
   void update2(int x, int y){
     if(onSecondPage){
     if(overNext((width/2)-buttonWidth/2, height-(buttonHeight+20), buttonWidth, buttonHeight)){
-      pushNext2 = true;
+     pushNext2 = true;
     }
     else{
-      pushNext2 = false;
+       pushNext2 = false;
     }
     }
   }
@@ -73,7 +74,7 @@ class addName{
   
   boolean overNext(int x, int y, int width, int height){
     if (mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
-        //println("inside");
+        println("inside");
         return true;
   } else {
     //println("outside");

@@ -19,11 +19,11 @@ class savedScreen{
     text(string1, width/2, height/2);
     text(string2, width/2, height/2+100);
     textSize(30);
-    String restartSt = "RESTART";
-    text(restartSt,width/2, height-85);
-    noFill();
-    stroke(15);
-    rect((width/2)-buttonWidth/2, height-(buttonHeight+70), buttonWidth, buttonHeight, 7);
+    //String restartSt = "RESTART";
+    //text(restartSt,width/2, height-20);
+    //noFill();
+    //stroke(15);
+    //rect((width/2)-buttonWidth/2, height-(buttonHeight+5), buttonWidth, buttonHeight, 7);
   }
   
   //button to reset goes to reset screen
@@ -51,7 +51,7 @@ class savedScreen{
   }
   
   void update(int x, int y){
-    if(overNext((width/2)-buttonWidth/2, height-(buttonHeight+70), buttonWidth, buttonHeight)){
+    if(overNext((width/2)-buttonWidth/2, height-(buttonHeight+5), buttonWidth, buttonHeight)){
       pushNext = true;
       //println("update");
     }

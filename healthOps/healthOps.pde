@@ -1,3 +1,11 @@
+// Connecting Arduino to Processing : https://learn.sparkfun.com/tutorials/connecting-arduino-to-processing/all
+// Author : Maria Deslis, Cassandra Goodby, Celeste Marino
+
+import processing.serial.*;
+
+Serial myPort; // Create object from Serial class
+char val;     // Data received from the serial port
+
 OpeningScreen s1;
 PShape[] s = new PShape[15];
 heartRate hr;
@@ -13,11 +21,26 @@ savedScreen s7;
 boolean onMainScreen = false;
 boolean onOpenScreen = false;
 boolean onSavedScreen = false;
+boolean onInfoScreen = false;
+String chosenOne;
+
+boolean lungChosen = true;
+  boolean kidneyChosen = false;
+  boolean melanomaChosen = false;
+  boolean plaqueChosen = false;
+  boolean diskChosen = false;
+  
+  boolean lungfirst = true;
+
 
 void setup(){
-  //fullScreen();
-  size(800,600);
+  fullScreen();
+  //size(800,600);
   background(255);
+  
+  String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
+  myPort = new Serial(this, portName, 9600);
+  
   s1 = new OpeningScreen();
   s2 = new addName();
   hr = new heartRate();
@@ -50,9 +73,63 @@ void setup(){
   //s5.drawInfoScreen();
 }
 
-void draw(){  
+void draw(){ 
+  
+  if(onMainScreen){
+  if ( myPort.available() > 0) 
+  {  
+    // If data is available,
+    println("here");
+    val = myPort.readChar();         // read it and store it in val
+  }
+  println(val);
+    switch(val) {
+    case '6':
+      // all of them are off
+      //println("All off");
+      //background(255);
+      //chosenOne="all";
+      //s5.drawInfoScreen(chosenOne);
+      break;
+    case '0':
+      lungChosen = false;
+      chosenOne= "lung";
+      println("LUNGGG"+lungfirst);
+      if(lungfirst){
+        background(255);
+        s5.drawInfoScreen(chosenOne);
+      }
+      lungfirst = false;
+      //println("Lung Off" + val);
+      break;
+    case '2':
+      //kidneyChosen = false;
+      //background(255);
+      //chosenOne= "kidney";
+      //s5.drawInfoScreen(chosenOne);
+      break;
+    case '3':
+      //melanomaChosen = false;
+      //background(255);
+      //chosenOne= "melanoma";
+      //s5.drawInfoScreen(chosenOne);
+      break;
+    case '4':
+      //diskChosen  = false;
+      //background(255);
+      //chosenOne= "disk";
+      //s5.drawInfoScreen(chosenOne);
+      break;
+    case '5':
+      //plaqueChosen = false;
+      break;
+  }}
+  //println(lungChosen);  
+  
   if(onOpenScreen){
     s1.openScreenClick();
+  }
+   if(onSecondPage){
    s2.openScreenClick2();
   }
   if(onWelcome){
@@ -61,7 +138,11 @@ void draw(){
   if(onSavedScreen){
     s7.openScreenClick();
   }
+  if(onInfoScreen){
+    s5.openScreenClick();
+  }
 }
+
 
 void keyPressed(){
   if(onSecondPage){

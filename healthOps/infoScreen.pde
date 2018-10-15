@@ -1,5 +1,10 @@
 class infoScreen{
-  boolean onInfoScreen = false;
+  int nextBtn;
+  boolean pushNext = false;
+  int buttonHeight = 50;
+  int buttonWidth = 150;
+  String enterText = "";
+  
   String lungText1= "a tumor caused by small cell carcinoma, an aggressive form of cancer that can cause tumors in the lungs.";
   String lungText2 = "Small cell carcinoma is usually seen in people who smoke cigarettes, avoid smoking cigarettes.";
   String diskText1= "a herniated disc. The cushioning discs between vertebrae can wear down and tear, causing the disc to bulge and press on nearby nerves which can cause pain or numbness. ";
@@ -11,7 +16,8 @@ class infoScreen{
   String plaqueText1= "a buildup of plaque in an artery. Plaque buildup in arteries reduces that amount of blood that can flow to and from the heart and can cause heart attacks or strokes.";
   String plaqueText2 = "keeping your cholesterol levels, blood pressure, and weight in a healthy range as well as making healthy choices like refraining from smoking and getting exercise can all help prevent plaque from building up in your arteries.";
   
-  void drawInfoScreen(){
+  void drawInfoScreen(String chosenOne){
+    hr.drawHeart();
     onInfoScreen = true;
     String string1 = "You removed: ";
     String string2 = "Prevention Tips: ";
@@ -21,42 +27,107 @@ class infoScreen{
     text(string1, 2*width/3, 200);
     text(string2, 2*width/3, (height/2)+40);
     textSize(25);
+    String restartSt = "BACK";
+    text(restartSt,width/2, height-85);
+    noFill();
+    stroke(15);
+    rect((width/2)-buttonWidth/2, height-(buttonHeight+70), buttonWidth, buttonHeight, 7);
     
     //IF LUNG 
-    //text(lungText1, 2*width/3-320, 240, width/2, height/2);
-    //text(lungText2, 2*width/3-320, (height/2)+80, width/2, height/2);
-    //s[5].enableStyle();
-    //s[5].translate(200,(height/3)-50);
-    //shape(s[5]);
+    if(chosenOne == "lung"){
+      
+    text(lungText1, 2*width/3-320, 240, width/2, height/2);
+    text(lungText2, 2*width/3-320, (height/2)+80, width/2, height/2);
+    s[5].enableStyle();
+    //fill(0);
+    s[5].translate(200,(height/3)-50);
+    shape(s[5]);
+}
     
     //IF Kidney
-    //text(kidneyText1, 2*width/3-320, 240, width/2, height/2);
-    //text(kidneyText2, 2*width/3-320, (height/2)+80, width/2, height/2);
-    //s[6].enableStyle();
-    //s[6].translate(200,(height/3)-50);
-    //shape(s[6]);
+    if(chosenOne == "kidney"){
+    text(kidneyText1, 2*width/3-320, 240, width/2, height/2);
+    text(kidneyText2, 2*width/3-320, (height/2)+80, width/2, height/2);
+    s[6].enableStyle();
+    s[6].translate(200,(height/3)-50);
+    shape(s[6]);
+    }
     
     // //IF disk
-    //text(diskText1, 2*width/3-320, 240, width/2, height/2);
-    //text(diskText2, 2*width/3-320, (height/2)+80, width/2, height/2);
-    //s[7].enableStyle();
-    //s[7].translate(200,(height/3)-80);
-    //shape(s[7]);
+    if(chosenOne == "disk"){
+    text(diskText1, 2*width/3-320, 240, width/2, height/2);
+    text(diskText2, 2*width/3-320, (height/2)+80, width/2, height/2);
+    s[7].enableStyle();
+    s[7].translate(200,(height/3)-80);
+    shape(s[7]);
+    }
     
     ////IF melanoma
-    //text(melanomaText1, 2*width/3-320, 240, width/2, height/2);
-    //text(melanomaText2, 2*width/3-320, (height/2)+80, width/2, height/2);
-    //s[8].enableStyle();
-    //s[8].translate(200,(height/3)-80);
-    //shape(s[8]);
+    if(chosenOne == "melanoma"){
+    text(melanomaText1, 2*width/3-320, 240, width/2, height/2);
+    text(melanomaText2, 2*width/3-320, (height/2)+80, width/2, height/2);
+    s[8].enableStyle();
+    s[8].translate(200,(height/3)-80);
+    shape(s[8]);
+    }
     
     //IF plaque
+    if(chosenOne == "plaque"){
     text(plaqueText1, 2*width/3-320, 240, width/2, height/2);
     text(plaqueText2, 2*width/3-320, (height/2)+80, width/2, height/2);
     s[9].enableStyle();
     s[9].translate(200,(height/3)-80);
     shape(s[9]);
+    }
+  
+  //if(!lungChosen && !kidneyChosen && !diskChosen && !melanomaChosen && !plaqueChosen){
+  //  delay(1000);
+  //  background
+  //  s7.drawSaved();
+  //}
   }
   //BUTTON BACK TO MAIN
   //ONCE ALL PIECES COMPLETE GO TO RESET SCREEN
+  
+  //button to reset goes to reset screen
+  void openScreenClick(){
+    update(mouseX, mouseY);
+    if(mousePressed == true){
+      println("now"); 
+      mousePressed();
+    }
+  }
+  
+  void mousePressed(){
+    //println("wow");
+    if(pushNext && onInfoScreen){
+      //println("pushed");
+      clear();
+      background(255);
+      hr.drawHeart();
+      s7.drawSaved();
+      onOpenScreen = false;
+    }
+    else{
+      //println("meh");
+    }
+  }
+  
+  void update(int x, int y){
+    if(overNext((width/2)-buttonWidth/2, height-(buttonHeight+70), buttonWidth, buttonHeight)){
+      pushNext = true;
+      //println("update");
+    }
+  }
+  
+  
+  boolean overNext(int x, int y, int width, int height){
+    if (mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
+        //println("inside");
+        return true;
+  } else {
+    //println("outside");
+    return false;
+  }
+  }
 }
