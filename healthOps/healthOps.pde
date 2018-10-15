@@ -1,15 +1,3 @@
-// Connecting Arduino to Processing : https://learn.sparkfun.com/tutorials/connecting-arduino-to-processing/all
-// Author : Maria Deslis
-// HealthOps Interface
-// Author : Cassandra Goodby
-// HealthOps Board Game
-// Author : Celeste Marino
-
-//import processing.serial.*;
-
-//Serial myPort; // Create object from Serial class
-//char val;     // Data received from the serial port
-
 OpeningScreen s1;
 PShape[] s = new PShape[15];
 heartRate hr;
@@ -62,34 +50,7 @@ void setup(){
   //s5.drawInfoScreen();
 }
 
-void draw(){
-  //  if ( myPort.available() > 0) 
-  //{  
-  //  // If data is available,
-  //  val = myPort.readChar();         // read it and store it in val
-  //} 
-  
-  //switch(val) {
-  //  case '6':
-  //    println("Zero: " + val);
-  //    break;
-  //  case '0':
-  //    println("One: " + val);
-  //    break;
-  //  case '2':
-  //    println("Two: " + val);
-  //    break;
-  //  case '3':
-  //    println("Three: " + val);
-  //    break;
-  //  case '4':
-  //    println("Four: " + val);
-  //    break;
-  //  case '5':
-  //    println("Five: " + val);
-  //    break;
-  //}
-  
+void draw(){  
   if(onOpenScreen){
     s1.openScreenClick();
    s2.openScreenClick2();
